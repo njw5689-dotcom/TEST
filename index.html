@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>고1 국어 - 고려가요 서경별곡(西京別曲) 완벽 정복</title>
+  <meta name="description" content="고등학교 1학년 국어 필수 고전문학 <서경별곡> 개념정리, 50문항 랜덤 문제은행 형성평가, 인터랙티브 서경의 여인 DM 톡 게임 웹앱">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="theme-default">
+
+  <!-- 상단 헤더 -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <!-- 서경의 여인 마스코트 캐릭터 이미지 -->
+        <div class="character-avatar" aria-hidden="true">
+          <img src="./character.png" alt="고려가요 서경별곡 서경의 여인 캐릭터" class="header-character-img">
+        </div>
+        <div class="brand-text">
+          <div class="badge-row">
+            <span class="subject-badge">고등학교 1학년 국어</span>
+            <span class="genre-badge">고려가요 · 서정시</span>
+          </div>
+          <h1 class="main-title">🌸 고려가요 &lt;서경별곡(西京別曲)&gt; 완벽 정복</h1>
+          <p class="sub-title">대동강 물빛 원문 해설부터 50문항 랜덤 쪽지시험, 서경의 여인 속마음 DM까지</p>
+        </div>
+      </div>
+
+      <!-- 상단 유틸리티 & 탭 내비게이션 -->
+      <div class="header-controls">
+        <!-- 교실 수업 모드 토글 -->
+        <button id="btn-classroom-mode" class="util-btn classroom-btn" title="교실 대형 화면/전자칠판용 글자 확대 모드" onclick="toggleClassroomMode()">
+          <span class="icon">🖥️</span>
+          <span class="btn-text">교실 수업 모드</span>
+        </button>
+
+        <!-- 3단 탭 네비게이션 -->
+        <nav class="nav-tabs" role="tablist">
+          <button id="tab-study" class="nav-tab active" role="tab" aria-selected="true" onclick="switchTab('study')">
+            <span class="tab-icon">📖</span>
+            <span class="tab-title">개념정리</span>
+          </button>
+          <button id="tab-quiz" class="nav-tab" role="tab" aria-selected="false" onclick="switchTab('quiz')">
+            <span class="tab-icon">✏️</span>
+            <span class="tab-title">쪽지시험 (랜덤10)</span>
+          </button>
+          <button id="tab-game" class="nav-tab" role="tab" aria-selected="false" onclick="switchTab('game')">
+            <span class="tab-icon">💬</span>
+            <span class="tab-title">서경의 여인 DM</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- 메인 본문 -->
+  <main class="main-container">
+
+    <!-- ============================================== -->
+    <!-- [섹션 1: 📖 개념정리 탭]                         -->
+    <!-- ============================================== -->
+    <section id="sec-study" class="content-section" role="tabpanel">
+      <!-- 교실 수업용 컨트롤 바 -->
+      <div class="study-toolbar glass-card">
+        <div class="toolbar-left">
+          <span class="toolbar-label">📌 연별 집중 보기:</span>
+          <div class="filter-btn-group">
+            <button class="filter-btn active" onclick="filterStanza('all')">전체 연</button>
+            <button class="filter-btn" onclick="filterStanza(1)">제1연 (이별 거부)</button>
+            <button class="filter-btn" onclick="filterStanza(2)">제2연 (불변의 맹세)</button>
+            <button class="filter-btn" onclick="filterStanza(3)">제3연 (원망과 질투)</button>
+          </div>
+        </div>
+        <div class="toolbar-right">
+          <button id="btn-toggle-translation" class="action-btn outline-btn" onclick="toggleAllTranslation()">
+            <span class="icon">🔄</span>
+            <span id="trans-toggle-text">현대어 풀이 가리기</span>
+          </button>
+          <button class="action-btn primary-btn" onclick="openClassroomBoard()">
+            <span class="icon">📋</span>
+            <span>판서 핵심 요약</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 안내 배너 -->
+      <div class="notice-banner">
+        <span class="notice-icon">💡</span>
+        <span class="notice-text"><strong>수업 꿀팁:</strong> 본문의 밑줄 친 <span class="highlight-hint">색상 시어</span>를 누르면 뜻풀이와 상징적 의미가 팝업으로 나타납니다!</span>
+      </div>
+
+      <!-- 제1연 카드 -->
+      <article class="stanza-card glass-card" data-stanza="1">
+        <div class="stanza-header">
+          <div class="stanza-title-wrap">
+            <span class="stanza-badge">제 1 연</span>
+            <h2 class="stanza-theme">이별의 거부와 적극적인 연모의 정</h2>
+          </div>
+          <span class="stanza-summary-tag">서경 사랑 · 길쌈베 버림 · 능동적 태도</span>
+        </div>
+
+        <div class="stanza-body">
+          <div class="verse-row">
+            <div class="verse-original">
+              <span class="verse-num">1</span>
+              <p class="ancient-text">
+                <span class="term-clickable" onclick="showWordModal('서경')">서경(西京)</span>이 아질가 <span class="term-clickable" onclick="showWordModal('서경')">서경(西京)</span>이 <span class="term-clickable" onclick="showWordModal('서울')">서울</span>히 마르는
+              </p>
+              <div class="refrain-box" title="고려가요 후렴구">
+                <span class="refrain-badge">후렴</span>
+                <span class="refrain-text">위 두어렁셩 두어렁셩 다링디리</span>
+              </div>
+            </div>
+            <div class="verse-modern">
+              <p class="modern-text">서경(평양)이 아! 서경이 (새로 닦은 아름다운) 서울이지마는,</p>
+            </div>
+          </div>
+
+          <div class="verse-row">
+            <div class="verse-original">
+              <span class="verse-num">2</span>
+              <p class="ancient-text">
+                <span class="term-clickable" onclick="showWordModal('닷곤ᄃᆡ')">닷곤 ᄃᆡ</span> 아질가 <span class="term-clickable" onclick="showWordModal('닷곤ᄃᆡ')">닷곤 ᄃᆡ</span> <span class="term-clickable" onclick="showWordModal('쇼셩경')">쇼셩경(小西京)</span> <span class="term-clickable" onclick="showWordModal('괴ᄋᆞ옴마ᄅᆞᆫ')">괴ᄋᆞ옴마ᄅᆞᆫ</span>
+              </p>
+              <div class="refrain-box">
+                <span class="refrain-badge">후렴</span>
+                <span class="refrain-text">위 두어렁셩 두어렁셩 다링디리</span>
+              </div>
+            </div>
+            <div class="verse-modern">
+              <p class="modern-text">중수하여 닦은 곳인 아! 닦은 곳인 소성경(평양)을 사랑하지마는,</p>
+            </div>
+          </div>
+
+          <div class="verse-row">
+            <div class="verse-original">
+              <span class="verse-num">3</span>
+              <p class="ancient-text">
+                <span class="term-clickable" onclick="showWordModal('여ᄒᆡ므론')">여ᄒᆡ므론</span> 아질가 <span class="term-clickable" onclick="showWordModal('여ᄒᆡ므론')">여ᄒᆡ므론</span> <span class="term-clickable" onclick="showWordModal('질삼베')">질삼 베</span> ᄇᆞ리시고
+              </p>
+              <div class="refrain-box">
+                <span class="refrain-badge">후렴</span>
+                <span class="refrain-text">위 두어렁셩 두어렁셩 다링디리</span>
+              </div>
+            </div>
+            <div class="verse-modern">
+              <p class="modern-text">님과 이별하기보다는 아! 이별하기보다는 (생업인) 길쌈하던 베를 버려두고서라도,</p>
+            </div>
+          </div>
+
+          <div class="verse-row">
+            <div class="verse-original">
+              <span class="verse-num">4</span>
+              <p class="ancient-text">
+                <span class="term-clickable" onclick="showWordModal('괴시란ᄃᆡ')">괴시란ᄃᆡ</span> 아질가 <span class="term-clickable" onclick="showWordModal('괴시란ᄃᆡ')">괴시란ᄃᆡ</span> <span class="term-clickable" onclick="showWordModal('우러곰')">우러곰</span> <span class="term-clickable" onclick="showWordModal('좃ᄂᆞ니이다')">좃ᄂᆞ니이다</span>
+              </p>
+              <div class="refrain-box">
+                <span class="refrain-badge">후렴</span>
+                <span class="refrain-text">위 두어렁셩 두어렁셩 다링디리</span>
+              </div>
+            </div>
+            <div class="verse-modern">
+              <p class="modern-text">나를 사랑해만 주신다면 아! 사랑해만 주신다면 울면서 따르겠습니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="stanza-footer">
+          <div class="core-point">
+            <span class="point-badge">1연 핵심 정리</span>
+            <p class="point-desc">
+              자신의 삶의 터전인 <strong>'서경'</strong>과 생계 수단인 <strong>'질삼 베'</strong>마저 미련 없이 버리고 님을 따르겠다는 <strong>적극적이고 직설적인 여성 화자</strong>의 태도가 드러남. (체념하고 순종하는 <em>&lt;가시리&gt;</em>의 화자와 뚜렷이 대비됨)
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 제2연 카드 -->
+      <article class="stanza-card glass-card" data-stanza="2">
+        <div class="stanza-header">
+          <div class="stanza-title-wrap">
+            <span class="stanza-badge">제 2 연</span>
+            <h2 class="stanza-theme">변함없는 사랑과 영원한 믿음(신의)의 맹세</h2>
+          </div>
+          <span class="stanza-summary-tag">구슬가 삽입 · 불변의 신의 · 정석가 일치</span>
+        </div>
+
+        <div class="stanza-body">
+          <div class="verse-row">
+            <div class="verse-original">
+              <span class="verse-num">5</span>
+              <p class="ancient-text">
+                <span class="term-clickable" onclick="showWordModal('구스리')">구스리</span> 아질가 <span class="term-clickable" onclick="showWordModal('구스리')">구스리</span> <span class="term-clickable" onclick="showWordModal('바회')">바회예</span> <span class="term-clickable" onclick="showWordModal('뎐든')">뎐든</span>
+              </p>
+              <div class="refrain-box">
+                <span class="refrain-badge">후렴</span>
+                <span class="refrain-text">위 두어렁셩 두어렁셩 다링디리</span>
+              </div>
+            </div>
+            <div class="verse-modern">
+              <p class="modern-text">구슬이 아! 구슬이 바위에 떨어진들,</p>
+            </div>
+          </div>
+
+          <div class="verse-row">
+            <div class="verse-original">
+              <span class="verse-num">6</span>
+              <p class="ancient-text">
+                <span class="term-clickable" onclick="showWordModal('끈')">끈이딴</span> 아질가 <span class="term-clickable" onclick="showWordModal('끈')">끈이딴</span> <span class="term-clickable" onclick="showWordModal('그츠리잇가')">그츠리잇가</span>
+              </p>
+              <div class="refrain-box">
+                <span class="refrain-badge">후렴</span>
+                <span class="refrain-text">위 두어렁셩 두어렁셩 다링디리</span>
+              </div>
+            </div>
+            <div class="verse-modern">
+              <p class="modern-text">(구슬을 꿰어 놓은) 끈이야 아! 끈이야 끊어지겠습니까? (끊어지지 않습니다 - 설의법)</p>
+            </div>
+          </div>
+
+          <div class="verse-row">
+            <div class="verse-original">
+              <span class="verse-num">7</span>
+              <p class="ancient-text">
+                <span class="term-clickable" onclick="showWordModal('즈믄ᄒᆡ')">즈믄 ᄒᆡᄅᆞᆯ</span> 아질가 <span class="term-clickable" onclick="showWordModal('즈믄ᄒᆡ')">즈믄 ᄒᆡᄅᆞᆯ</span> <span class="term-clickable" onclick="showWordModal('외오곰')">외오곰</span> <span class="term-clickable" onclick="showWordModal('녀신ᄃᆞᆯ')">녀신ᄃᆞᆯ</span>
+              </p>
+              <div class="refrain-box">
+                <span class="refrain-badge">후렴</span>
+                <span class="refrain-text">위 두어렁셩 두어렁셩 다링디리</span>
+              </div>
+            </div>
+            <div class="verse-modern">
+              <p class="modern-text">천(1,000) 년을 아! 천 년을 외따로이 (홀로 고독하게) 살아간들,</p>
+            </div>
+          </div>
+
+          <div class="verse-row">
+            <div class="verse-original">
+              <span class="verse-num">8</span>
+              <p class="ancient-text">
+                <span class="term-clickable" onclick="showWordModal('신')">신(信)잇ᄃᆞᆫ</span> 아질가 <span class="term-clickable" onclick="showWordModal('신')">신(信)잇ᄃᆞᆫ</span> <span class="term-clickable" onclick="showWordModal('그츠리잇가')">그츠리잇가</span>
+              </p>
+              <div class="refrain-box">
+                <span class="refrain-badge">후렴</span>
+                <span class="refrain-text">위 두어렁셩 두어렁셩 다링디리</span>
+              </div>
+            </div>
+            <div class="verse-modern">
+              <p class="modern-text">(님을 향한) 믿음이야 아! 믿음이야 끊어지겠습니까? (영원히 변치 않습니다)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="stanza-footer">
+          <div class="core-point">
+            <span class="point-badge">2연 핵심 정리 (구슬가)</span>
+            <p class="point-desc">
+              <strong>비유의 대응 관계:</strong> <strong>구슬</strong>(사랑의 결합)과 <strong>바위</strong>(이별의 시련), <strong>끈</strong>(님을 향한 신의/믿음)의 대조. 이 부분은 <em>&lt;정석가(鄭石歌)&gt;</em> 6연에도 똑같이 실려 있어, 당시 고려 백성들 사이에서 널리 불리던 <strong>당대 유행가(구전자승)</strong>였음을 입증함.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 제3연 카드 -->
+      <article class="stanza-card glass-card" data-stanza="3">
+        <div class="stanza-header">
+          <div class="stanza-title-wrap">
+            <span class="stanza-badge">제 3 연</span>
+            <h2 class="stanza-theme">사공에 대한 원망과 새로운 여인에 대한 질투</h2>
+          </div>
+          <span class="stanza-summary-tag">대동강 단절 · 사공 원망 전가 · 질투와 불안</span>
+        </div>
+
+        <div class="stanza-body">
+          <div class="verse-row">
+            <div class="verse-original">
+              <span class="verse-num">9</span>
+              <p class="ancient-text">
+                <span class="term-clickable" onclick="showWordModal('대동강')">대동강(大同江)</span> 아질가 <span class="term-clickable" onclick="showWordModal('대동강')">대동강(大同江)</span> <span class="term-clickable" onclick="showWordModal('너븐디')">너븐디</span> 몰라셔
+              </p>
+              <div class="refrain-box">
+                <span class="refrain-badge">후렴</span>
+                <span class="refrain-text">위 두어렁셩 두어렁셩 다링디리</span>
+              </div>
+            </div>
+            <div class="verse-modern">
+              <p class="modern-text">대동강이 아! 대동강이 넓은 줄을 몰라서,</p>
+            </div>
+          </div>
+
+          <div class="verse-row">
+            <div class="verse-original">
+              <span class="verse-num">10</span>
+              <p class="ancient-text">
+                <span class="term-clickable" onclick="showWordModal('배내여')">배 내여</span> 아질가 <span class="term-clickable" onclick="showWordModal('배내여')">배 내여</span> <span class="term-clickable" onclick="showWordModal('노ᄒᆞᆫ다')">노ᄒᆞᆫ다</span> <span class="term-clickable" onclick="showWordModal('샤공')">샤공아</span>
+              </p>
+              <div class="refrain-box">
+                <span class="refrain-badge">후렴</span>
+                <span class="refrain-text">위 두어렁셩 두어렁셩 다링디리</span>
+              </div>
+            </div>
+            <div class="verse-modern">
+              <p class="modern-text">배를 내어 아! 배를 내어 놓았느냐, 사공아!</p>
+            </div>
+          </div>
+
+          <div class="verse-row">
+            <div class="verse-original">
+              <span class="verse-num">11</span>
+              <p class="ancient-text">
+                <span class="term-clickable" onclick="showWordModal('네가시')">네 가시</span> 아질가 <span class="term-clickable" onclick="showWordModal('네가시')">네 가시</span> <span class="term-clickable" onclick="showWordModal('엄난')">엄난</span> ᄒᆞᆫ 쥴 몰라셔
+              </p>
+              <div class="refrain-box">
+                <span class="refrain-badge">후렴</span>
+                <span class="refrain-text">위 두어렁셩 두어렁셩 다링디리</span>
+              </div>
+            </div>
+            <div class="verse-modern">
+              <p class="modern-text">네 아내가 아! 네 아내가 음탕한 짓(바람)을 하는 줄도 모르고,</p>
+            </div>
+          </div>
+
+          <div class="verse-row">
+            <div class="verse-original">
+              <span class="verse-num">12</span>
+              <p class="ancient-text">
+                <span class="term-clickable" onclick="showWordModal('녈ᄇᆡ')">녈 ᄇᆡ예</span> 아질가 <span class="term-clickable" onclick="showWordModal('녈ᄇᆡ')">녈 ᄇᆡ예</span> <span class="term-clickable" onclick="showWordModal('언전다')">언전다</span> <span class="term-clickable" onclick="showWordModal('샤공')">샤공아</span>
+              </p>
+              <div class="refrain-box">
+                <span class="refrain-badge">후렴</span>
+                <span class="refrain-text">위 두어렁셩 두어렁셩 다링디리</span>
+              </div>
+            </div>
+            <div class="verse-modern">
+              <p class="modern-text">떠나는 배에 아! 떠나는 배에 (내 님을) 태웠느냐, 사공아!</p>
+            </div>
+          </div>
+
+          <div class="verse-row">
+            <div class="verse-original">
+              <span class="verse-num">13</span>
+              <p class="ancient-text">
+                <span class="term-clickable" onclick="showWordModal('대동강')">대동강(大同江)</span> 아질가 <span class="term-clickable" onclick="showWordModal('대동강')">대동강(大同江)</span> <span class="term-clickable" onclick="showWordModal('건너편')">건너편</span> <span class="term-clickable" onclick="showWordModal('고즐')">고즐여</span>
+              </p>
+              <div class="refrain-box">
+                <span class="refrain-badge">후렴</span>
+                <span class="refrain-text">위 두어렁셩 두어렁셩 다링디리</span>
+              </div>
+            </div>
+            <div class="verse-modern">
+              <p class="modern-text">대동강 아! 대동강 건너편 꽃을,</p>
+            </div>
+          </div>
+
+          <div class="verse-row">
+            <div class="verse-original">
+              <span class="verse-num">14</span>
+              <p class="ancient-text">
+                <span class="term-clickable" onclick="showWordModal('ᄇᆡ타들면')">ᄇᆡ 타 들면</span> 아질가 <span class="term-clickable" onclick="showWordModal('ᄇᆡ타들면')">ᄇᆡ 타 들면</span> <span class="term-clickable" onclick="showWordModal('고즐')">고즐</span> <span class="term-clickable" onclick="showWordModal('것고리이다')">것고리이다</span>
+              </p>
+              <div class="refrain-box">
+                <span class="refrain-badge">후렴</span>
+                <span class="refrain-text">위 두어렁셩 두어렁셩 다링디리</span>
+              </div>
+            </div>
+            <div class="verse-modern">
+              <p class="modern-text">(내 님이) 배를 타고 건너가면 아! 건너가면 (다른 여인을) 꺾을 것입니다. (사귈 것입니다)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="stanza-footer">
+          <div class="core-point">
+            <span class="point-badge">3연 핵심 정리</span>
+            <p class="point-desc">
+              <strong>대동강:</strong> 화자와 님 사이를 가로막는 단절과 이별의 공간.<br>
+              <strong>사공 원망 (원망의 전가):</strong> 차마 떠나는 님을 직접 원망하지 못하고 무고한 사공에게 분노와 책임을 돌림.<br>
+              <strong>꽃을 꺾는다:</strong> 님이 강 건너편의 다른 여인에게 마음을 빼앗길 것에 대한 강한 <strong>불안과 인간적인 질투심</strong>의 표출.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 문학사적 심화 비교 코너: 서경별곡 vs 가시리 -->
+      <div class="comparison-card glass-card">
+        <h3 class="comp-title">📊 [수능·내신 필수] &lt;서경별곡&gt; vs &lt;가시리&gt; 비교 분석표</h3>
+        <div class="table-responsive">
+          <table class="comp-table">
+            <thead>
+              <tr>
+                <th>구분</th>
+                <th>고려가요 &lt;서경별곡&gt;</th>
+                <th>고려가요 &lt;가시리&gt;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-bold">이별에 임하는 태도</td>
+                <td><strong class="text-teal">적극적, 저돌적, 능동적</strong> (이별 거부, 동행 고집)</td>
+                <td><strong class="text-purple">소극적, 순종적, 인내와 체념</strong> (슬픔의 절제)</td>
+              </tr>
+              <tr>
+                <td class="font-bold">화자의 감정 표현</td>
+                <td>직설적 감정 표출, 원망의 전가(사공 탓), 질투심 노출</td>
+                <td>애이불비(哀而不悲: 슬프지만 겉으로 드러내지 않음)</td>
+              </tr>
+              <tr>
+                <td class="font-bold">이별 상황에 대한 반응</td>
+                <td>"길쌈베 버리고 울며 따르겠습니다"</td>
+                <td>"붙잡아 두고 싶지만 아니 올까 두려워 보내드립니다"</td>
+              </tr>
+              <tr>
+                <td class="font-bold">재회에 대한 기약</td>
+                <td>떠나는 님에 대한 불신과 질투 ("건너편 꽃을 꺾으리라")</td>
+                <td>재회의 간절한 소망 ("가시는 듯 곧 돌아오소서")</td>
+              </tr>
+              <tr>
+                <td class="font-bold">공통점</td>
+                <td colspan="2" class="text-center">고려가요, 3음보 율격(3·3·2 또는 3·3·3조), 분연체(분장체), 후렴구 사용, 여성 화자의 이별의 한(恨)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 후렴구의 기능 요약 카드 -->
+      <div class="refrain-info-card glass-card">
+        <h3>🥁 후렴구 &lt;위 두어렁셩 두어렁셩 다링디리&gt;의 기능과 특징</h3>
+        <ul class="info-list">
+          <li><strong>음악적 효과:</strong> 북이나 장구와 같은 타악기 소리를 흉내 낸 의성어로, 경쾌하고 흥겨운 리듬감을 형성함.</li>
+          <li><strong>구조적 기능:</strong> 연과 구를 구분 짓고 형태적 통일성과 운율감을 부여함.</li>
+          <li><strong>정서와의 괴리:</strong> 이별의 슬프고 애절한 노랫말 내용과 달리 후렴구가 매우 경쾌함 ➔ 남녀상열지사 민간 가요가 조선 시대 <strong>궁중 연희의 음악(궁중 연악)</strong>으로 수용·편입되면서 궁중의 흥취를 돋우기 위해 덧붙여졌음을 짐작할 수 있음.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- [섹션 2: ✏️ 쪽지시험 탭 (50문항 랜덤)]           -->
+    <!-- ============================================== -->
+    <section id="sec-quiz" class="content-section hidden" role="tabpanel">
+      <!-- 퀴즈 컨트롤 헤더 -->
+      <div class="quiz-hero glass-card">
+        <div class="quiz-info-text">
+          <div class="quiz-badge-row">
+            <span class="quiz-tag">50문항 문제은행 풀 탑재</span>
+            <span class="quiz-tag bg-teal">매회 무작위 10문항 자동 추출</span>
+          </div>
+          <h2 class="quiz-heading">🎯 서경별곡 실전 형성평가 (10문항)</h2>
+          <p class="quiz-desc">객관식(4지선다), O/X 퀴즈, 단답형 시어 주관식 문제가 골고루 출제됩니다. 문제를 모두 풀고 '일괄 채점하기'를 눌러보세요!</p>
+        </div>
+        <div class="quiz-stats-box">
+          <div class="stat-item">
+            <span class="stat-label">풀이 진행도</span>
+            <span id="quiz-progress-text" class="stat-val text-teal">0 / 10</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div id="quiz-progress-bar" class="progress-bar-fill" style="width: 0%;"></div>
+          </div>
+          <button class="reset-quiz-btn" onclick="initRandomQuiz()" title="문제 풀에서 새로운 10문제 무작위 추출">
+            <span>🎲 새 문제로 다시 풀기</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 퀴즈 문항 목록 컨테이너 (JS 렌더링) -->
+      <div id="quiz-container" class="quiz-items-wrap">
+        <!-- JS로 동적 생성 -->
+      </div>
+
+      <!-- 퀴즈 하단 제출 버튼 -->
+      <div class="quiz-submit-bar">
+        <button id="btn-submit-quiz" class="action-btn primary-btn large-btn" onclick="gradeQuiz()">
+          <span class="icon">📝</span>
+          <span>답안 제출 및 일괄 채점하기</span>
+        </button>
+      </div>
+
+      <!-- 퀴즈 결과 리포트 모달/카드 -->
+      <div id="quiz-result-card" class="quiz-result-card glass-card hidden">
+        <div class="result-header">
+          <div class="score-circle">
+            <span id="result-score" class="score-number">0</span>
+            <span class="score-unit">점 / 100점</span>
+          </div>
+          <div class="result-feedback">
+            <h3 id="result-title">채점 완료!</h3>
+            <p id="result-message">결과 분석 중...</p>
+            <div class="result-counts">
+              <span class="correct-badge">정답 <span id="count-correct">0</span>개</span>
+              <span class="wrong-badge">오답 <span id="count-wrong">0</span>개</span>
+            </div>
+          </div>
+        </div>
+        <div class="result-action-row">
+          <button class="action-btn outline-btn" onclick="scrollToQuizReview()">
+            <span>🔍 문제별 해설 및 오답 노트 확인</span>
+          </button>
+          <button class="action-btn primary-btn" onclick="initRandomQuiz()">
+            <span>🎲 다른 10문제 새로 풀기</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- [섹션 3: 💬 서경의 여인 DM 게임 탭]              -->
+    <!-- ============================================== -->
+    <section id="sec-game" class="content-section hidden" role="tabpanel">
+      <div class="dm-wrapper glass-card">
+        <!-- DM 헤더 프로필 -->
+        <div class="dm-header">
+          <div class="dm-user-profile">
+            <div class="dm-avatar-wrap">
+              <div class="character-avatar small-avatar" aria-hidden="true">
+                <img src="./character.png" alt="서경의 여인 아바타" class="dm-character-img">
+              </div>
+              <span class="online-indicator" title="대동강 나루터에서 실시간 접속 중"></span>
+            </div>
+            <div class="dm-info">
+              <div class="dm-name-row">
+                <span class="dm-user-name">서경의 여인 (화자)</span>
+                <span class="dm-status-tag">대동강 나루터</span>
+              </div>
+              <p class="dm-status-msg">"님아, 제발 그 배를 타지 마오... 질삼베도 다 버릴 텐데..."</p>
+            </div>
+          </div>
+          <!-- 공감 마스터 지수 -->
+          <div class="empathy-score-box">
+            <span class="empathy-label">❤️ 화자 공감 지수</span>
+            <span id="empathy-score" class="empathy-num">0점</span>
+          </div>
+        </div>
+
+        <!-- DM 대화 스크롤 영역 -->
+        <div id="dm-chat-box" class="dm-chat-box">
+          <!-- JS 렌더링 말풍선 -->
+        </div>
+
+        <!-- DM 선택지 입력 영역 -->
+        <div id="dm-choice-area" class="dm-choice-area">
+          <p class="choice-guide-text">💬 서경의 여인에게 건넬 공감과 조언을 골라주세요:</p>
+          <div id="dm-choice-buttons" class="dm-choice-buttons">
+            <!-- JS 동적 생성 -->
+          </div>
+        </div>
+
+        <!-- DM 결과 리포트 (대화 완료 시) -->
+        <div id="dm-result-box" class="dm-result-box hidden">
+          <h3 id="dm-result-title">🎉 서경의 여인과의 대화 완결!</h3>
+          <p id="dm-result-desc">축하합니다! 서경별곡 화자의 애절한 정서와 적극적인 이별 대처 태도를 깊이 있게 공감하였습니다.</p>
+          <button class="action-btn primary-btn" onclick="restartDmGame()">
+            <span>🔄 처음부터 다시 대화하기</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================== -->
+  <!-- [모달: 핵심 시어 상세 풀이 팝업]                 -->
+  <!-- ============================================== -->
+  <div id="word-modal" class="modal-overlay hidden" style="display: none;" onclick="closeWordModalOnBackdrop(event)">
+    <div class="modal-dialog glass-card">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="modal-tag">시어 뜻풀이 & 상징</span>
+          <h3 id="modal-word-title" class="modal-word">서경(西京)</h3>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeWordModal()" aria-label="닫기">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-info-item">
+          <span class="info-badge">사전적 의미</span>
+          <p id="modal-word-meaning" class="info-content">고려 시대의 두 번째 수도(평양).</p>
+        </div>
+        <div class="modal-info-item">
+          <span class="info-badge bg-purple">작품 속 상징적 의미</span>
+          <p id="modal-word-symbol" class="info-content">화자의 삶의 터전이자 번화한 곳으로, 화자가 매우 아끼는 공간이지만 님을 위해 기꺼이 버릴 수 있는 대상임.</p>
+        </div>
+        <div class="modal-info-item">
+          <span class="info-badge bg-teal">수험 핵심 포인트</span>
+          <p id="modal-word-exam" class="info-content">'질삼 베'와 함께 화자의 적극적인 사랑을 강조하는 장치.</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="action-btn primary-btn" onclick="closeWordModal()">확인</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- [모달: 교실 수업 판서 핵심 요약]                 -->
+  <!-- ============================================== -->
+  <div id="board-modal" class="modal-overlay hidden" style="display: none;" onclick="closeBoardModalOnBackdrop(event)">
+    <div class="modal-dialog large-dialog glass-card">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="modal-tag">교사 수업 가이드</span>
+          <h3 class="modal-word">📋 교실 수업 판서 요약 리포트</h3>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeBoardModal()" aria-label="닫기">✕</button>
+      </div>
+      <div class="modal-body board-grid">
+        <div class="board-card">
+          <h4>1. 작품 개관</h4>
+          <ul>
+            <li><strong>갈래:</strong> 고려가요(고려속요), 서정시, 장가</li>
+            <li><strong>성격:</strong> 서정적, 직설적, 적극적, 애상적</li>
+            <li><strong>제재:</strong> 님과의 이별</li>
+            <li><strong>주제:</strong> 이별의 슬픔과 이를 극복하려는 영원한 사랑의 맹세</li>
+            <li><strong>율격:</strong> 3음보 율격 (3·3·3조 / 3·3·2조)</li>
+          </ul>
+        </div>
+        <div class="board-card">
+          <h4>2. 화자의 정서와 태도 변화</h4>
+          <ul>
+            <li><strong>1연:</strong> 이별 거부 및 사랑의 확인 ("울면서 따르겠습니다")</li>
+            <li><strong>2연:</strong> 영원한 믿음과 사랑의 다짐 ("신의야 끊어지겠습니까")</li>
+            <li><strong>3연:</strong> 사공을 향한 원망의 전가와 새로운 여인에 대한 질투</li>
+          </ul>
+        </div>
+        <div class="board-card">
+          <h4>3. 주요 시어의 비유와 상징</h4>
+          <ul>
+            <li><strong>서경 / 질삼 베:</strong> 화자의 생활 터전과 생업 ➔ 님을 위해 버릴 수 있는 것</li>
+            <li><strong>구슬 / 끈:</strong> 사랑 / 변함없는 믿음(신의)</li>
+            <li><strong>바위 / 즈믄 해:</strong> 사랑의 시련과 역경 / 고독한 세월</li>
+            <li><strong>대동강:</strong> 사랑의 단절, 이별을 고착화하는 공간</li>
+            <li><strong>샤공:</strong> 원망의 전가 대상 (님 대신 탓하는 희생양)</li>
+            <li><strong>꽃:</strong> 강 건너편의 '새로운 여인' (질투의 대상)</li>
+          </ul>
+        </div>
+        <div class="board-card">
+          <h4>4. 문학사적 의의</h4>
+          <ul>
+            <li>우리 문학 전통의 '이별의 정한' 중 가장 <strong>능동적이고 적극적인 여성 화자</strong>의 목소리를 형상화함.</li>
+            <li>조선 초기 악학궤범에 한글로 정착되어 구전 가요의 생생한 민중적 감정이 잘 보존됨.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="action-btn primary-btn" onclick="closeBoardModal()">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 푸터 -->
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <p>고등학교 1학년 국어 고려가요 &lt;서경별곡&gt; 스마트 교육용 인터랙티브 웹앱</p>
+      <p class="footer-sub">HTML5, Vanilla CSS, Vanilla JavaScript 기반 정적 웹앱 · 학생 개인정보 수집 없음 · GitHub Pages 배포 지원</p>
+    </div>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
